@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>LoginFirebase</title>
+	<link rel="stylesheet" type="text/css" href="css/materialize.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+<div class="row">
+      <div class="col s12 m4 offset-m4">
+        <div class="card-panel">
+        	<p align="center">
+ 				<img src="img/logo-google.png"  width="50px" height="50px" alt="" class="responsive-img">
+ 			</p>
+ 			<p align="center">Login do firebase.</p>
+			<div class="row">
+			      <i class="material-icons col s2">perm_identity</i>
+		  		  <div class="input-field col s10">
+		  		  	<input id="email" type="text" required class="validate">
+		  		    <label class="active" for=""> Email</label>
+		  		  </div>
+	  		</div>
+	  		<div class="row"> 
+	  		<i class="material-icons col s2">lock_outline</i>
+		  		  <div class="input-field col s10">
+		   			<input id="password" type="password" required class="validate">
+		  		    <label class="active" for="">Password</label>
+		  		  </div>
+	  		</div>
+			<div class="row">
+     				<input class="col s12 m12" type="checkbox" id="test6" checked="checked" /><label for="test6">Remember me</label>			
+			</div>
+			<div class="row">
+				<button id="btnLogin" class="waves-effect waves-light btn col s12 m12 eal darken-3 ">Login</button> 
+			</div>
+			<div class="row">
+				<button id="btnSignUp" class="waves-effect waves-light btn col s12 m12 eal darken-3 ">Sign up</button> 
+			</div>
+			<div class="row">
+				<button id="btnSignOut" class="waves-effect waves-light btn col s12 m12 eal darken-3 ">Sign out</button> 
+			</div>
+        </div>
+      </div>
+    </div>
+<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
