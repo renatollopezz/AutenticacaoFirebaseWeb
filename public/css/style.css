@@ -1,3 +1,8 @@
 .panel-login{
 	background-color: #1DD4E0;
 }
+
+.toast {
+	background-color: #80cbc4;
+	color: #424242;
+}

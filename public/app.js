@@ -1,4 +1,8 @@
+//anonymous function
  (function (){
+
+  //Duration alert
+  var duration = 2000;
 
  // Initialize Firebase
   var config = {
@@ -10,82 +14,71 @@
   };
   firebase.initializeApp(config);
 
-
-  // get components
-
+  // Get components
   const edtEmail = document.getElementById("email");
   const edtPassword = document.getElementById("password");
   const btnLogin = document.getElementById("btnLogin");
-  const btnSignIn = document.getElementById("btnSignIn");
+  const btnSignUp = document.getElementById("btnSignUp");
   const btnSignOut = document.getElementById("btnSignOut");
 
-  // add event bntLogin
-
+  // Add event bntLogin
   btnLogin.addEventListener('click',e=> {
   		const email = edtEmail.value;
   		const password = edtPassword.value;
   		const firebaseAuth = firebase.auth();
 
-  		//logando
-
+  		//SignIn
   		const promise = firebaseAuth.signInWithEmailAndPassword(email,password);
-     
-  		  promise.catch(function(error) {
+
+      //Return promise
+      promise.catch(function(error) {
           var codErro = error.code;
           if(codErro === 'auth/invalid-email'){
-            alert("Invalid Email!");
+            Materialize.toast("Invalid Email!",duration);
           }else if(codErro ==='auth/user-disabled'){
-            alert("User Disabled!");
+            Materialize.toast("User Disabled!",duration);
           }else if (codErro === 'auth/user-not-found') {
-            alert("User not found!");
+            Materialize.toast("User not found, please register email!",duration);
           }else if(codErro ==='auth/wrong-password'){
-            alert("Password incorrect!");
+            Materialize.toast("Password incorrect!",duration);
           }
-        });
+      });
   });
   
 
-btnSignIn.addEventListener('click',e=>{
+  btnSignUp.addEventListener('click',e=>{
       const email = edtEmail.value;
       const password = edtPassword.value;
       const firebaseAuth = firebase.auth();
+      //SignUp
+      const promise = firebaseAuth.createUserWithEmailAndPassword(email,password);
 
-      const promise = firebaseAuth.createInWithEmailAndPassword(email,password);
-
+      //Return promise  
       promise.catch(function(error) {
-          var codErro = error.code;
-          if(codErro === 'auth/email-already-in-use'){
-            alert("Email already in use!");
-          }else if(codErro ==='auth/invalid-email'){
-            alert("invalid email!");
-          }else if (codErro === 'auth/operation-not-allowed') {
-            alert("email/password accounts are not enabled in application!");
-          }else if(codErro ==='auth/weak-password'){
-            alert("Weak password!");
-          }
-        });
+        var codErro = error.code;
+        if(codErro === 'auth/email-already-in-use'){
+          Materialize.toast("Email already in use!",duration);
+        }else if(codErro ==='auth/invalid-email'){
+          Materialize.toast("invalid email!",duration);
+        }else if (codErro === 'auth/operation-not-allowed') {
+          Materialize.toast("email/password accounts are not enabled in application!",duration);
+        }else if(codErro ==='auth/weak-password'){
+          Materialize.toast("Weak password!",duration);
+        }
+      });
   });
-  
 
-});
+  //Desconect user
+  btnSignOut.addEventListener('click',e=>{
+       firebase.auth().signOut();
+  });
 
-
-
-
-
-//desconectar usuario
-btnSignOut.addEventListener('click',e=>{
-  firebase.auth().signOut();
-});
-
-//evento de auteracao do estado do usuario (login)
+//Changed user status
   firebase.auth().onAuthStateChanged(firebaseUser => {
-
     if(firebaseUser){
-      alert("");
+      Materialize.toast("Wellcome!",duration);
     }else{
-      alert("nao logado");
+    
     }
   });
-
-}());
+})();
